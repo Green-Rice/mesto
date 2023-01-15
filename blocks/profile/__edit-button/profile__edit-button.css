@@ -7,10 +7,12 @@
   background-color: black;
   border: 1px solid white;
   transition: opacity 0.3s;
+  padding: 0;
 }
 
 .profile__edit-button:hover {
   cursor: pointer;
+  opacity: .6;
 }
 
 @media screen and(max-width: 568px) {
