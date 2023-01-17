@@ -7,11 +7,11 @@
   float: left;
 }
 
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 768px) {
   .profile__description {
     font-size: 14px;
     line-height: 17px;
-    margin: 14px 0 0;
+    margin: 8px 0 0;
     text-align: center;
   }
 }

@@ -1,4 +1,8 @@
 .profile__user-name {
+  max-width: 300px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -7,9 +11,11 @@
 }
 
 
-@media screen and (max-width: 568px) {
+@media screen and (max-width: 768px) {
   .profile__user-name {
     font-size: 27px;
     line-height: 33px;
+    padding-top: 4px;
+    padding-left: 27px;
   }
 }
