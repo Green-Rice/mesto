@@ -12,6 +12,6 @@
   box-sizing: border-box;
 }
 
-.element__like-btn {
+.element__like-btn:hover {
   opacity: .5;
 }
