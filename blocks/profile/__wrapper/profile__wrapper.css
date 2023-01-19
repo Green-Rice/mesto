@@ -9,6 +9,7 @@
 
 @media screen and (max-width: 768px) {
   .profile__wrapper {
+    max-width: 220px;
     gap: 10px;
     justify-content: center;
   }

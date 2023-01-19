@@ -4,4 +4,8 @@
   max-width: 1280px;
   min-width: 320px;
   background-color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  padding: 0 19px;
 }

@@ -3,10 +3,12 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  height: 26px;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;
-  padding:4px 0 13px 4px;
+  padding: 0;
+  margin: 0;
 }
 
 .popup__input:focus {
