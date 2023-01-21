@@ -10,11 +10,13 @@ let userNameInput = document.querySelector(".popup__input_type_name");
 let profileDescriptionInput = document.querySelector(".popup__input_type_description");
 
 // Открываем и закрываем окно редактирования профиля
-function openPopup () {
+function openPopup() {
   popupContainer.classList.add("popup_is-opened")
 }
 
-function closePopup () {
+function closePopup() {
+  userNameInput.value = profileUserName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
   popupContainer.classList.remove("popup_is-opened")
 }
 
@@ -27,10 +29,10 @@ function editinProfileName(evt) {
   profileUserName.textContent = userNameInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
 
-  closePopup ();
+  closePopup();
 }
 
 
 openEditPopup.addEventListener("click", openPopup)
 popupBtnClose.addEventListener("click", closePopup)
-formDescription.addEventListener("submit",editinProfileName);
+formDescription.addEventListener("submit", editinProfileName);
