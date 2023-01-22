@@ -11,12 +11,13 @@ let profileDescriptionInput = document.querySelector(".popup__input_type_descrip
 
 // Открываем и закрываем окно редактирования профиля
 function openPopup() {
+  userNameInput.value = profileUserName.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
   popupContainer.classList.add("popup_is-opened")
 }
 
 function closePopup() {
-  userNameInput.value = profileUserName.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+
   popupContainer.classList.remove("popup_is-opened")
 }
 

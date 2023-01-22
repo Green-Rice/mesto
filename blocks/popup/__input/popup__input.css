@@ -3,7 +3,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  height: 26px;
+  min-height: 26px;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -15,25 +15,7 @@
   outline: 2px solid #6691eb;
   border-radius: 1px;
 }
+
 .popup__input:first-child {
-  margin-bottom: 30px;
-}
-.popup__input:last-of-type {
-  margin-top: -2px;
-  padding-bottom: 0;
-}
-
-@media screen and (max-width: 568px) {
-  .popup__title {
-    font-size: 18px;
-    line-height: 22px;
-    margin: 25px 0 64px;
-    padding-bottom: 8px;
-  }
-}
-
-@media screen and (max-width: 568px) {
-  .popup__input:last-of-type {
-    margin-top: -4px;
-  }
+  margin-bottom: 27px;
 }
