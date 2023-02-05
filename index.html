@@ -38,54 +38,6 @@
 
     <section class="elements">
 
-      <article class="element">
-        <img class="element__img" src="./images/Karachaevsk.jpg" alt="карачаевск">
-        <div class="element__description">
-          <h2 class="element__caption">Карачаево-Черкесия</h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__img" src="./images/Elbrus.jpg" alt="эльбрус">
-        <div class="element__description">
-          <h2 class="element__caption">Эльбрус</h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__img" src="./images/Ай-Петри.jpg" alt="ай-петри">
-        <div class="element__description">
-          <h2 class="element__caption">Ай-Петри</h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__img" src="./images/Бештау.jpg" alt="бештау">
-        <div class="element__description">
-          <h2 class="element__caption">Бештау</h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__img" src="./images/Ергаки.jpg" alt="ергаки">
-        <div class="element__description">
-          <h2 class="element__caption">Ергаки</h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__img" src="./images/dombai.jpg" alt="домбай">
-        <div class="element__description">
-          <h2 class="element__caption">Домбай</h2>
-          <button type="button" class="element__like-btn"></button>
-        </div>
-      </article>
-
     </section>
   </main>
 
@@ -95,7 +47,7 @@
   </footer>
 
 
-  <div class="popup ">
+  <div class="popup popup_type_edit">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
 
@@ -113,6 +65,47 @@
     </div>
 
   </div>
+
+    <div class="popup popup_type_add">
+    <div class="popup__content">
+      <button type="button" class="popup__close"></button>
+
+      <h3 class="popup__title">Новое место</h3>
+
+      <form name="edit_form" class="popup__form">
+
+        <input name="name" class="popup__input popup__input_type_title" type="text" placeholder="Название">
+
+        <input name="link" class="popup__input popup__input_type_link" type="url" placeholder="Ссылка на картинку">
+
+        <button class="popup__submit" type="submit" >Создать</button>
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="popup popup_type_review">
+    <div class="popup__view">
+
+      <button type="button" class="popup__close"></button>
+      <img class="popup__img" src="https://avatars.mds.yandex.net/i?id=65fc6c1c9001dc0dd85f0d14bd52438f1433e6b5-8177627-images-thumbs&n=13" alt="">
+      <h3 class="popup__description">Имя карточки</h3>
+
+    </div>
+  </div>
+
+  <template class="template-element">
+    <article class="element">
+          <img class="element__img" src="" alt="">
+          <button type="button" class="element__trash"></button>
+          <div class="element__description">
+            <h2 class="element__caption"></h2>
+            <button type="button" class="element__like-btn"></button>
+          </div>
+        </article>
+  </template>
+
 
   <script src="./scripts/main.js"></script>
 </body>
