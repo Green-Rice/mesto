@@ -7,4 +7,5 @@
   object-fit: cover;
   object-position: top right;
   z-index: 1;
+  cursor: pointer;
 }
