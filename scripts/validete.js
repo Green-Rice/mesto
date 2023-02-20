@@ -47,7 +47,6 @@ const setEventListeners = (formsConfig, formElement) => {
     });
   });
 };
-
 // Функция, которая проверяет валидность поля
 const isValid = (formsConfig, formElement, inputElement) => {
   if (!inputElement.validity.valid) {
