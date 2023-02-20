@@ -118,3 +118,18 @@ popupEditOpen.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
   openPopup(popupContainer);
 });
+
+
+// //ПР6 закрытие по оверлею
+// function closePopupOverlay(evt) {
+//   if (evt.currentTarget === evt.target) {
+//     closePopup(evt.target);
+//   }
+// }
+
+// // ПР6 закрытие по Esc
+// function closePopupEscape(evt) {
+//   if (evt.key == "Escape") {
+//     closePopup(document.querySelector('.popup_opened'));
+//   }
+// }

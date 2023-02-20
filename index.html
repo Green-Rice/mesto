@@ -1,113 +1,135 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
-</head>
+  <body class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/Vector.svg" alt="логотип сайта" />
+    </header>
 
-<body class="page">
+    <main class="content">
+      <section class="profile">
+        <img class="profile__img" src="./images/Jac.jpg" alt="Жак Кусто" />
 
-  <header class="header">
-    <img class="header__logo" src="./images/Vector.svg" alt="логотип сайта">
-  </header>
+        <div class="profile__info">
+          <div class="profile__wrapper">
+            <h1 class="profile__user-name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"></button>
+          </div>
 
-
-  <main class="content">
-
-    <section class="profile">
-      <img class="profile__img" src="./images/Jac.jpg" alt="Жак Кусто">
-
-      <div class="profile__info">
-
-        <div class="profile__wrapper">
-          <h1 class="profile__user-name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button"></button>
+          <p class="profile__description">Исследователь океана</p>
         </div>
 
-        <p class="profile__description">Исследователь океана</p>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+
+      <section class="elements"></section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copy">&copy; 2023 Mest  o Russia</p>
+    </footer>
+
+    <div class="popup popup_type_edit">
+      <div class="popup__content">
+        <button type="button" class="popup__close"></button>
+
+        <h3 class="popup__title">Редактировать профиль</h3>
+
+        <form name="edit_form" class="popup__form" novalidate>
+          <input
+            id="name-input"
+            name="user_name"
+            class="popup__input popup__input_type_name "
+            type="text"
+            placeholder="Имя"
+            required
+            minlength="2"
+            maxlength="40"
+          />
+          <span class="popup__input-error name-input-error"></span>
+
+          <input
+            id="bio-input"
+            name="biography"
+            class="popup__input popup__input_type_description"
+            type="text"
+            placeholder="О тебе"
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span class="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
+
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
       </div>
-
-      <button type="button" class="profile__add-button">
-      </button>
-
-    </section>
-
-    <section class="elements">
-
-    </section>
-  </main>
-
-
-  <footer class="footer">
-    <p class="footer__copy">&copy; 2023 Mesto Russia</p>
-  </footer>
-
-
-  <div class="popup popup_type_edit">
-    <div class="popup__content">
-      <button type="button" class="popup__close"></button>
-
-      <h3 class="popup__title">Редактировать профиль</h3>
-
-      <form name="edit_form" class="popup__form">
-
-        <input name="user_name" class="popup__input popup__input_type_name" type="text" placeholder="Имя">
-
-        <input name="biography" class="popup__input popup__input_type_description" type="text" placeholder="О тебе">
-
-        <button class="popup__submit" type="submit" >Сохранить</button>
-      </form>
-
     </div>
-
-  </div>
 
     <div class="popup popup_type_add">
-    <div class="popup__content">
-      <button type="button" class="popup__close"></button>
+      <div class="popup__content">
+        <button type="button" class="popup__close"></button>
 
-      <h3 class="popup__title">Новое место</h3>
+        <h3 class="popup__title">Новое место</h3>
 
-      <form name="edit_form" class="popup__form">
+        <form name="edit_form" class="popup__form" novalidate>
+          <input
+            id="name-card"
+            name="name"
+            class="popup__input popup__input_type_title"
+            type="text"
+            placeholder="Название"
+            required
+            minlength="2"
+            maxlength="30"
+          />
+          <span class="popup__input-error name-card-error popup__input-error_active"></span>
 
-        <input name="name" class="popup__input popup__input_type_title" type="text" placeholder="Название">
+          <input
+            id="link-card"
+            name="link"
+            class="popup__input popup__input_type_link"
+            type="url"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <span class="popup__input-error link-card-error"></span>
 
-        <input name="link" class="popup__input popup__input_type_link" type="url" placeholder="Ссылка на картинку">
-
-        <button class="popup__submit" type="submit" >Создать</button>
-      </form>
-
+          <button class="popup__submit" type="submit">Создать</button>
+        </form>
+      </div>
     </div>
 
-  </div>
-
-  <div class="popup popup_type_review">
-    <div class="popup__view">
-
-      <button type="button" class="popup__close"></button>
-      <img class="popup__img" src="https://avatars.mds.yandex.net/i?id=65fc6c1c9001dc0dd85f0d14bd52438f1433e6b5-8177627-images-thumbs&n=13" alt="">
-      <h3 class="popup__description">Имя карточки</h3>
-
+    <div class="popup popup_type_review">
+      <div class="popup__view">
+        <button type="button" class="popup__close"></button>
+        <img
+          class="popup__img"
+          src="https://avatars.mds.yandex.net/i?id=65fc6c1c9001dc0dd85f0d14bd52438f1433e6b5-8177627-images-thumbs&n=13"
+          alt=""
+        />
+        <h3 class="popup__description">Имя карточки</h3>
+      </div>
     </div>
-  </div>
 
-  <template class="template-element">
-    <article class="element">
-          <img class="element__img" src="#" alt="картинка">
-          <button type="button" class="element__trash"></button>
-          <div class="element__description">
-            <h2 class="element__caption"></h2>
-            <button type="button" class="element__like-btn"></button>
-          </div>
-        </article>
-  </template>
-
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/main.js"></script>
-</body>
-
+    <template class="template-element">
+      <article class="element">
+        <img class="element__img" src="#" alt="картинка" />
+        <button type="button" class="element__trash"></button>
+        <div class="element__description">
+          <h2 class="element__caption"></h2>
+          <button type="button" class="element__like-btn"></button>
+        </div>
+      </article>
+    </template>
+    <script src="./scripts/validete.js"></script>
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
 </html>
