@@ -95,11 +95,17 @@ function submitAddForm(evt) {
 // Открываем окнa попапа
 function openPopup(popupName) {
   popupName.classList.add("popup_is-opened");
+
+  document.addEventListener("keydown", handleEscape);
+  document.addEventListener("mousedown", handleOverlay)
 };
 
 // Функция закрытия попапов
 function closePopup(popupName) {
   popupName.classList.remove("popup_is-opened");
+
+  document.removeEventListener("keydown", handleEscape);
+  document.removeEventListener("mousedown", handleOverlay);
 };
 
 popupBtnClose.forEach((btnClose) => {
@@ -107,6 +113,22 @@ popupBtnClose.forEach((btnClose) => {
     closePopup(evt.target.closest('.popup'));
   });
 });
+
+//Закрытие по Escape
+const handleEscape = function (evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
+  }
+};
+
+//Закрытие по оверлею
+const handleOverlay = function (evt) {
+  if (evt.target.classList.contains("popup")) {
+    closePopup(evt.target);
+  }
+};
+
 
 openAddCardPopup.addEventListener("click", () => { openPopup(popupContainerCard) });
 
@@ -119,17 +141,3 @@ popupEditOpen.addEventListener("click", () => {
   openPopup(popupContainer);
 });
 
-
-// //ПР6 закрытие по оверлею
-// function closePopupOverlay(evt) {
-//   if (evt.currentTarget === evt.target) {
-//     closePopup(evt.target);
-//   }
-// }
-
-// // ПР6 закрытие по Esc
-// function closePopupEscape(evt) {
-//   if (evt.key == "Escape") {
-//     closePopup(document.querySelector('.popup_opened'));
-//   }
-// }
