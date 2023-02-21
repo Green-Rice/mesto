@@ -5,13 +5,7 @@ const formsConfig = {
   inactiveButtonClass: "popup__submit_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
-};
-
-
-
-
-
-
+}
 
 
  const formElement = document.querySelector('.popup__form'); //Сама форма
