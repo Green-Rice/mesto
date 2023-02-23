@@ -24,6 +24,7 @@ const cardTemplate = document.querySelector('.template-element').content;//Те�
 const containerCards = document.querySelector('.elements');//Контейнер для темплев
 const elementCard = cardTemplate.querySelector('.element');//Готовая карточка
 const deleteCardBtn = document.querySelector('.element__trash');//Кнопка удаления карточки
+const popups = Array.from(document.querySelectorAll(".popup"));
 
 //Карточки из коробки
 initialCards.forEach((elementCard) => publishCard(elementCard));
@@ -88,24 +89,22 @@ function handleCardFormSubmit(evt) {
     link: inputAddLink.value
   };
   publishCard(addNewCard);
-  popupAddCardForm.reset(); //обнуляем фopму после создания
   closePopup(popupContainerCard);
+  evt.submitter.disabled = true;
+  evt.submitter.classList.add('popup__submit_disabled');
+  popupAddCardForm.reset(); //обнуляем фopму после создания
 };
 
 // Открываем окнa попапа
 function openPopup(popupName) {
   popupName.classList.add("popup_is-opened");
-
   document.addEventListener("keydown", handleEscape);
-  document.addEventListener("mousedown", handleOverlay)
 };
 
 // Функция закрытия попапов
 function closePopup(popupName) {
   popupName.classList.remove("popup_is-opened");
-
   document.removeEventListener("keydown", handleEscape);
-  document.removeEventListener("mousedown", handleOverlay);
 };
 
 popupBtnCloseList.forEach((btnClose) => {
@@ -131,6 +130,10 @@ const handleOverlay = function (evt) {
 
 
 buttonOpenAddCardPopup.addEventListener("click", () => { openPopup(popupContainerCard) });
+
+popups.forEach((popupElement) => {
+  popupElement.addEventListener("mousedown", handleOverlay)
+});
 
 formDescription.addEventListener("submit", handleProfileFormSubmit);
 popupAddCardForm.addEventListener('submit', handleCardFormSubmit);
