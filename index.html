@@ -44,24 +44,12 @@
       <h3 class="popup__title">Редактировать профиль</h3>
 
       <form name="edit_form" class="popup__form" novalidate>
-        <input id="name-input"
-               name="user_name"
-               class="popup__input popup__input_type_name "
-               type="text"
-               placeholder="Имя"
-               required
-               minlength="2"
-               maxlength="40" />
+        <input id="name-input" name="user_name" class="popup__input popup__input_type_name " type="text"
+          placeholder="Имя" required minlength="2" maxlength="40" />
         <span class="popup__input-error name-input-error"></span>
 
-        <input id="bio-input"
-               name="biography"
-               class="popup__input popup__input_type_description"
-               type="text"
-               placeholder="О тебе"
-               required
-               minlength="2"
-               maxlength="200" />
+        <input id="bio-input" name="biography" class="popup__input popup__input_type_description" type="text"
+          placeholder="О тебе" required minlength="2" maxlength="200" />
         <span class="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
 
         <button class="popup__submit" type="submit" disabled>Сохранить</button>
@@ -71,30 +59,20 @@
 
   <div class="popup popup_type_add">
     <div class="popup__content">
-      <button type="button" class="popup__close" ></button>
+      <button type="button" class="popup__close"></button>
 
       <h3 class="popup__title">Новое место</h3>
 
       <form name="edit_form" class="popup__form" novalidate>
         <div class="popup__container">
-          <input id="name-card"
-                 name="name"
-                 class="popup__input popup__input_type_title"
-                 type="text"
-                 placeholder="Название"
-                 required
-                 minlength="2"
-                 maxlength="30" />
+          <input id="name-card" name="name" class="popup__input popup__input_type_title" type="text"
+            placeholder="Название" required minlength="2" maxlength="30" />
           <span class="popup__input-error name-card-error popup__input-error_active"></span>
         </div>
 
         <div class="popup__container">
-          <input id="link-card"
-                 name="link"
-                 class="popup__input popup__input_type_link"
-                 type="url"
-                 placeholder="Ссылка на картинку"
-                 required />
+          <input id="link-card" name="link" class="popup__input popup__input_type_link" type="url"
+            placeholder="Ссылка на картинку" required />
           <span class="popup__input-error link-card-error"></span>
 
         </div>
@@ -126,8 +104,8 @@
   </template>
 
   <script src="./scripts/Card.js" type="module"></script>
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/main.js" ></script>
+  <!-- <script src="./scripts/cards.js"></script> -->
+  <script src="./scripts/main.js" type="module"></script>
   <script src="./scripts/validete.js"></script>
 </body>
 

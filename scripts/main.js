@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import initialCards from './cards.js';
+
 //Берем элемнты из html
 
 const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редактирования
@@ -25,26 +28,59 @@ const containerCards = document.querySelector('.elements');//Контейнер 
 const elementCard = cardTemplate.querySelector('.element');//Готовая карточка
 const deleteCardBtn = document.querySelector('.element__trash');//Кнопка удаления карточки
 
+
+
 //Карточки из коробки
-initialCards.forEach((elementCard) => publishCard(elementCard));
+//initialCards.forEach((elementCard) => publishCard(elementCard));
 
 // Функция создания карточки
-function createCard(name, link) {
-  //Переносим шаблон
-  const newElemCard = elementCard.cloneNode('true');
-  //Переменная для заполнения артибутов src, alt и добавление названия в заголовок карточки
-  const newElemCardImg = newElemCard.querySelector('.element__img');
-  newElemCard.querySelector('.element__caption').textContent = name;
-  newElemCardImg.src = link;
-  newElemCardImg.alt = name;
-  //Вызов функции "Поставить лайк!"
-  newElemCard.querySelector('.element__like-btn').addEventListener('click', handleToggleLike);
-  //Вызов функции удаления карточки
-  newElemCard.querySelector('.element__trash').addEventListener('click', removeElementCard);
-  //Открытие полноразменого попапа с картинкой
-  newElemCardImg.addEventListener('click', () => openPopupImg(name, link));
-  return newElemCard;
+// function createCard(name, link) {
+//   //Переносим шаблон
+//   const newElemCard = elementCard.cloneNode('true');
+//   //Переменная для заполнения артибутов src, alt и добавление названия в заголовок карточки
+//   const newElemCardImg = newElemCard.querySelector('.element__img');
+//   newElemCard.querySelector('.element__caption').textContent = name;
+//   newElemCardImg.src = link;
+//   newElemCardImg.alt = name;
+//   //Вызов функции "Поставить лайк!"
+//   newElemCard.querySelector('.element__like-btn').addEventListener('click', handleToggleLike);
+//   //Вызов функции удаления карточки
+//   newElemCard.querySelector('.element__trash').addEventListener('click', removeElementCard);
+//   //Открытие полноразменого попапа с картинкой
+//   newElemCardImg.addEventListener('click', () => openPopupImg(name, link));
+//   return newElemCard;
+// };
+
+
+// ПР 7
+
+//Функция открытия попапа с картинкой
+function openPopupImg(name, link) {
+  openPopup(popupImage);
+  imgCardPopup.src = link;
+  imgCardPopup.alt = name;
+  descriptionCardPopup.textContent = name;
 };
+
+
+function createElementCard(item){
+  const elementCard = new Card (item,'.template-element', openPopupImg)
+  const newCardElement = elementCard.generateCard()
+  //return elementCard;
+  containerCards.prepend(newCardElement);
+};
+
+function renderInitialCards() {
+  initialCards.forEach(createElementCard);
+}
+renderInitialCards();
+
+//createElementCard(initialCards);
+
+
+
+
+
 
 // Функция рендера карточки
 function publishCard(elementCard) {
@@ -62,23 +98,23 @@ function handleToggleLike(evt) {
 };
 
 // Функция редактирования окна
-function handleProfileFormSubmit(evt) {
+// function handleProfileFormSubmit(evt) {
 
-  evt.preventDefault();
+//   evt.preventDefault();
 
-  profileUserName.textContent = userNameInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+//   profileUserName.textContent = userNameInput.value;
+//   profileDescription.textContent = profileDescriptionInput.value;
 
-  closePopup(profilePopupContainer);
-};
+//   closePopup(profilePopupContainer);
+// };
 
-//Функция открытия попапа с картинкой
-function openPopupImg(name, link) {
-  openPopup(popupImage);
-  imgCardPopup.src = link;
-  imgCardPopup.alt = name;
-  descriptionCardPopup.textContent = name;
-};
+// //Функция открытия попапа с картинкой
+// function openPopupImg(name, link) {
+//   openPopup(popupImage);
+//   imgCardPopup.src = link;
+//   imgCardPopup.alt = name;
+//   descriptionCardPopup.textContent = name;
+// };
 
 //Функция сохранения
 function handleCardFormSubmit(evt) {
