@@ -30,28 +30,6 @@ const deleteCardBtn = document.querySelector('.element__trash');//Кнопка �
 
 
 
-//Карточки из коробки
-//initialCards.forEach((elementCard) => publishCard(elementCard));
-
-// Функция создания карточки
-// function createCard(name, link) {
-//   //Переносим шаблон
-//   const newElemCard = elementCard.cloneNode('true');
-//   //Переменная для заполнения артибутов src, alt и добавление названия в заголовок карточки
-//   const newElemCardImg = newElemCard.querySelector('.element__img');
-//   newElemCard.querySelector('.element__caption').textContent = name;
-//   newElemCardImg.src = link;
-//   newElemCardImg.alt = name;
-//   //Вызов функции "Поставить лайк!"
-//   newElemCard.querySelector('.element__like-btn').addEventListener('click', handleToggleLike);
-//   //Вызов функции удаления карточки
-//   newElemCard.querySelector('.element__trash').addEventListener('click', removeElementCard);
-//   //Открытие полноразменого попапа с картинкой
-//   newElemCardImg.addEventListener('click', () => openPopupImg(name, link));
-//   return newElemCard;
-// };
-
-
 // ПР 7
 
 //Функция открытия попапа с картинкой
@@ -66,55 +44,36 @@ function openPopupImg(name, link) {
 function createElementCard(item){
   const elementCard = new Card (item,'.template-element', openPopupImg)
   const newCardElement = elementCard.generateCard()
-  //return elementCard;
-  containerCards.prepend(newCardElement);
+  return newCardElement;
+
 };
 
 function renderInitialCards() {
-  initialCards.forEach(createElementCard);
+  initialCards.forEach(card => {
+    publishCard(card);
+  });
 }
 renderInitialCards();
-
-//createElementCard(initialCards);
-
-
-
-
 
 
 // Функция рендера карточки
 function publishCard(elementCard) {
-  containerCards.prepend(createCard(elementCard.name, elementCard.link));
+  containerCards.prepend(createElementCard(elementCard));
 };
 
-//Функция удаления карточки
-function removeElementCard(evt) {
-  evt.target.closest('.element').remove();
+
+
+
+//Функция редактирования окна
+function handleProfileFormSubmit(evt) {
+
+  evt.preventDefault();
+
+  profileUserName.textContent = userNameInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+
+  closePopup(profilePopupContainer);
 };
-
-// Фунция лайк
-function handleToggleLike(evt) {
-  evt.target.classList.toggle('element__like-btn_active');
-};
-
-// Функция редактирования окна
-// function handleProfileFormSubmit(evt) {
-
-//   evt.preventDefault();
-
-//   profileUserName.textContent = userNameInput.value;
-//   profileDescription.textContent = profileDescriptionInput.value;
-
-//   closePopup(profilePopupContainer);
-// };
-
-// //Функция открытия попапа с картинкой
-// function openPopupImg(name, link) {
-//   openPopup(popupImage);
-//   imgCardPopup.src = link;
-//   imgCardPopup.alt = name;
-//   descriptionCardPopup.textContent = name;
-// };
 
 //Функция сохранения
 function handleCardFormSubmit(evt) {
