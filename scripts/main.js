@@ -1,6 +1,6 @@
 import Card from './Card.js';
-import initialCards from './cards.js';
-
+import {initialCards, formsConfig} from './cards.js';
+import FormValidator from './FormValidator.js';
 //Берем элемнты из html
 
 const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редактирования
@@ -25,8 +25,7 @@ const profileDescriptionInput = document.querySelector(".popup__input_type_descr
 
 const cardTemplate = document.querySelector('.template-element').content;//Темплей элемент
 const containerCards = document.querySelector('.elements');//Контейнер для темплев
-const elementCard = cardTemplate.querySelector('.element');//Готовая карточка
-const deleteCardBtn = document.querySelector('.element__trash');//Кнопка удаления карточки
+
 
 
 
@@ -40,27 +39,33 @@ function openPopupImg(name, link) {
   descriptionCardPopup.textContent = name;
 };
 
-
+// Создание экземпляра класса Card
 function createElementCard(item){
-  const elementCard = new Card (item,'.template-element', openPopupImg)
-  const newCardElement = elementCard.generateCard()
+  const elementCard = new Card (item,'.template-element', openPopupImg);
+  const newCardElement = elementCard.generateCard();
+
   return newCardElement;
-
 };
-
-function renderInitialCards() {
-  initialCards.forEach(card => {
-    publishCard(card);
-  });
-}
-renderInitialCards();
-
 
 // Функция рендера карточки
 function publishCard(elementCard) {
   containerCards.prepend(createElementCard(elementCard));
 };
 
+// Обработка начального объекта
+function renderInitialCards() {
+  initialCards.forEach(card => {
+    publishCard(card);
+  });
+}
+
+renderInitialCards();
+
+// Включение валидации форм
+const profileValidation = new FormValidator(formsConfig, profilePopupContainer);
+const addCardValidation = new FormValidator(formsConfig, popupContainerCard);
+profileValidation.enableValidation();
+addCardValidation.enableValidation();
 
 
 

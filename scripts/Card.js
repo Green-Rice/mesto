@@ -1,6 +1,3 @@
-  //Исходный массив для рендера
-
-
 class Card {
   constructor(data, templateSelector, openPopup) {
     this._name = data.name
@@ -46,13 +43,5 @@ class Card {
   }
 
 };
-
-
-
-//  this_data.forEach((item) => {
-//   const card = new Card(item, '.template-element');
-//   const cardElement = card.generateCard()
-//   document.querySelector('.elements').append(cardElement);
-// });
 
 export default Card;
