@@ -123,7 +123,10 @@ const handleOverlay = function (evt) {
   }
 };
 
-buttonOpenAddCardPopup.addEventListener("click", () => { openPopup(popupContainerCard) });
+buttonOpenAddCardPopup.addEventListener("click", () => {
+  openPopup(popupContainerCard)
+  addCardValidation.checkBtn();
+});
 
 formDescription.addEventListener("submit", handleProfileFormSubmit);
 popupAddCardForm.addEventListener('submit', handleCardFormSubmit);

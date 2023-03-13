@@ -67,12 +67,8 @@ class FormValidator {
     })
   };
 
-  _initResetListener() {
-    this._formElement.addEventListener("reset", () => {
-      setTimeout(() => {
-        this._toggleButtonState();
-      }, 0);
-    });
+  checkBtn(){
+    this._toggleButtonState();
   }
 
   enableValidation() {
