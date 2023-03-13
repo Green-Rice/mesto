@@ -11,7 +11,6 @@ class FormValidator {
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
-
   _showInputError(inputElement, errorMessage) {
 
     // Находим элемент ошибки внутри самой функции
@@ -68,7 +67,6 @@ class FormValidator {
     })
   };
 
-
   _initResetListener() {
     this._formElement.addEventListener("reset", () => {
       setTimeout(() => {
@@ -77,12 +75,10 @@ class FormValidator {
     });
   }
 
-
   enableValidation() {
     this._setEventListeners();
   };
 
 };
-
 
 export default FormValidator;

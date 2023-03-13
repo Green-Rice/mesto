@@ -26,11 +26,7 @@ const profileDescriptionInput = document.querySelector(".popup__input_type_descr
 const cardTemplate = document.querySelector('.template-element').content;//Темплей элемент
 const containerCards = document.querySelector('.elements');//Контейнер для темплев
 
-
-
-
 // ПР 7
-
 //Функция открытия попапа с картинкой
 function openPopupImg(name, link) {
   openPopup(popupImage);
@@ -66,8 +62,6 @@ const profileValidation = new FormValidator(formsConfig, profilePopupContainer);
 const addCardValidation = new FormValidator(formsConfig, popupContainerCard);
 profileValidation.enableValidation();
 addCardValidation.enableValidation();
-
-
 
 //Функция редактирования окна
 function handleProfileFormSubmit(evt) {
@@ -129,7 +123,6 @@ const handleOverlay = function (evt) {
   }
 };
 
-
 buttonOpenAddCardPopup.addEventListener("click", () => { openPopup(popupContainerCard) });
 
 formDescription.addEventListener("submit", handleProfileFormSubmit);
@@ -140,4 +133,3 @@ popupEditOpen.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
   openPopup(profilePopupContainer);
 });
-
