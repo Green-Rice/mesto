@@ -1,6 +1,8 @@
 import Card from './Card.js';
-import {initialCards, formsConfig} from './cards.js';
+import { initialCards, formsConfig } from './cards.js';
 import FormValidator from './FormValidator.js';
+
+import Section from './Section.js';
 //Берем элемнты из html
 
 const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редактирования
@@ -26,6 +28,13 @@ const profileDescriptionInput = document.querySelector(".popup__input_type_descr
 const cardTemplate = document.querySelector('.template-element').content;//Темплей элемент
 const containerCards = document.querySelector('.elements');//Контейнер для темплев
 
+const dataSection = {
+  items: initialCards,
+  renderer: () => {},
+}
+
+const cardSectionElement = new Section({ dataSection }, containerCards)
+
 // ПР 7
 //Функция открытия попапа с картинкой
 function openPopupImg(name, link) {
@@ -36,8 +45,8 @@ function openPopupImg(name, link) {
 };
 
 // Создание экземпляра класса Card
-function createElementCard(item){
-  const elementCard = new Card (item,'.template-element', openPopupImg);
+function createElementCard(item) {
+  const elementCard = new Card(item, '.template-element', openPopupImg);
   const newCardElement = elementCard.generateCard();
 
   return newCardElement;
