@@ -28,12 +28,24 @@ const profileDescriptionInput = document.querySelector(".popup__input_type_descr
 const cardTemplate = document.querySelector('.template-element').content;//Темплей элемент
 const containerCards = document.querySelector('.elements');//Контейнер для темплев
 
+// Создание экземпляра класса Card
+function createElementCard(item) {
+  const elementCard = new Card(item, '.template-element', openPopupImg);
+  const newCardElement = elementCard.generateCard();
+
+  return newCardElement;
+};
+
+const contenerCards = '.elements';
+
+
 const dataSection = {
   items: initialCards,
-  renderer: () => {},
+  renderer: createElementCard,
 }
 
-const cardSectionElement = new Section({ dataSection }, containerCards)
+const cardSectionElement = new Section(dataSection, contenerCards)
+cardSectionElement.rendererItem();
 
 // ПР 7
 //Функция открытия попапа с картинкой
@@ -44,27 +56,21 @@ function openPopupImg(name, link) {
   descriptionCardPopup.textContent = name;
 };
 
-// Создание экземпляра класса Card
-function createElementCard(item) {
-  const elementCard = new Card(item, '.template-element', openPopupImg);
-  const newCardElement = elementCard.generateCard();
 
-  return newCardElement;
-};
 
 // Функция рендера карточки
-function publishCard(elementCard) {
-  containerCards.prepend(createElementCard(elementCard));
-};
+// function publishCard(elementCard) {
+//   containerCards.prepend(createElementCard(elementCard));
+// };
 
-// Обработка начального объекта
-function renderInitialCards() {
-  initialCards.forEach(card => {
-    publishCard(card);
-  });
-}
+// // Обработка начального объекта
+// function renderInitialCards() {
+//   initialCards.forEach(card => {
+//     publishCard(card);
+//   });
+// }
 
-renderInitialCards();
+// renderInitialCards();
 
 // Включение валидации форм
 const profileValidation = new FormValidator(formsConfig, profilePopupContainer);
