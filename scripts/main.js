@@ -1,8 +1,9 @@
 import Card from './Card.js';
 import { initialCards, formsConfig } from './cards.js';
 import FormValidator from './FormValidator.js';
-
+import PopupWithImage from './PopupWithImage.js';
 import Section from './Section.js';
+import PopupWithForm from './PopupWithForm.js';
 //Берем элемнты из html
 
 const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редактирования
@@ -30,14 +31,32 @@ const containerCards = document.querySelector('.elements');//Контейнер 
 
 // Создание экземпляра класса Card
 function createElementCard(item) {
-  const elementCard = new Card(item, '.template-element', openPopupImg);
+  const elementCard = new Card(item, '.template-element', handlerClickimg);
   const newCardElement = elementCard.generateCard();
 
   return newCardElement;
 };
 
+const popupSelector = '.popup_type_review';
 const contenerCards = '.elements';
+const popupSelectorAddCard = '.popup_type_add';
+const handlerSubmitFormAdd = ({title, data}) => {
+  dataSection.addItem(createElementCard({name: title, link: data}));
+}
 
+
+//Создание попапа добавления карточки
+const popupAddCards = new PopupWithForm(popupSelectorAddCard, handlerSubmitFormAdd )
+
+
+
+//Создание экземпляра с картинкой
+const popupImg = new PopupWithImage(popupSelector);
+const handlerClickimg = (data) => {
+  popupImg.open(data);
+}
+
+popupImg.setEventListeners();
 
 const dataSection = {
   items: initialCards,
@@ -49,12 +68,12 @@ cardSectionElement.rendererItem();
 
 // ПР 7
 //Функция открытия попапа с картинкой
-function openPopupImg(name, link) {
-  openPopup(popupImage);
-  imgCardPopup.src = link;
-  imgCardPopup.alt = name;
-  descriptionCardPopup.textContent = name;
-};
+// function openPopupImg(name, link) {
+//   openPopup(popupImage);
+//   imgCardPopup.src = link;
+//   imgCardPopup.alt = name;
+//   descriptionCardPopup.textContent = name;
+// };
 
 
 
@@ -110,12 +129,12 @@ function openPopup(popupName) {
 };
 
 // Функция закрытия попапов
-function closePopup(popupName) {
-  popupName.classList.remove("popup_is-opened");
+// function closePopup(popupName) {
+//   popupName.classList.remove("popup_is-opened");
 
-  document.removeEventListener("keydown", handleEscape);
-  document.removeEventListener("mousedown", handleOverlay);
-};
+//   document.removeEventListener("keydown", handleEscape);
+//   document.removeEventListener("mousedown", handleOverlay);
+// };
 
 popupBtnCloseList.forEach((btnClose) => {
   btnClose.addEventListener("click", function (evt) {
@@ -124,19 +143,19 @@ popupBtnCloseList.forEach((btnClose) => {
 });
 
 //Закрытие по Escape
-const handleEscape = function (evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_is-opened");
-    closePopup(openedPopup);
-  }
-};
+// const handleEscape = function (evt) {
+//   if (evt.key === "Escape") {
+//     const openedPopup = document.querySelector(".popup_is-opened");
+//     closePopup(openedPopup);
+//   }
+// };
 
-//Закрытие по оверлею
-const handleOverlay = function (evt) {
-  if (evt.target.classList.contains("popup")) {
-    closePopup(evt.target);
-  }
-};
+// //Закрытие по оверлею
+// const handleOverlay = function (evt) {
+//   if (evt.target.classList.contains("popup")) {
+//     closePopup(evt.target);
+//   }
+// };
 
 buttonOpenAddCardPopup.addEventListener("click", () => {
   openPopup(popupContainerCard)
