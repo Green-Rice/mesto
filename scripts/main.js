@@ -46,18 +46,13 @@ const editButtonClickHandler = () => {
   popupProfileForm.open();
   profileValidation.resetValidation();
   setInitialUserInfo(userInfo.getUserInfo());
-   console.log(document.querySelector('.profile__user-name'));
-   console.log(userInfo.getUserInfo());
 };
-
 
 const setInitialUserInfo = ({ user_name, biography }) => {
   inputProfileName.value = user_name;
   inputProfileBio.value = biography;
 };
 
-//обработчики сабмита формы профиля
-//submitBtnFormDescription.addEventListener("submit", handleProfileFormSubmit);
 popupEditOpen.addEventListener("click", editButtonClickHandler);
 
 //СОЗДАНИЯ ПОПАПА С БОЛЬШОЙ КАРТИНКОЙ
