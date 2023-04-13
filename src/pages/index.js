@@ -1,31 +1,26 @@
-import Card from './Card.js';
-import { initialCards, formsConfig } from './cards.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-
-//Берем элемнты из html
-
-const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редактирования
-
-const profilePopupContainer = document.querySelector(".popup_type_edit"); //Попап Редактирования
-
-const buttonOpenAddCardPopup = document.querySelector(".profile__add-button"); //Кнопка добавление карточки
-const popupContainerCard = document.querySelector(".popup_type_add"); //Попап добавление карточки
-
-// Инпуты попап профиля
-const inputProfileName = document.querySelector('.popup__input_type_name');
-const inputProfileBio = document.querySelector('.popup__input_type_description');
-
-const popupSelector = '.popup_type_review';
-const contenerCards = '.elements';
+import "../pages/index.css";
+import Card from '../scripts/Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import Section from '../scripts/Section.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
+import UserInfo from '../scripts/UserInfo.js';
+import {
+  initialCards,
+  formsConfig,
+  infoSelector,
+  nameSelector,
+  contenerCards,
+  popupSelector,
+  inputProfileBio,
+  inputProfileName,
+  popupContainerCard,
+  buttonOpenAddCardPopup,
+  profilePopupContainer,
+  popupEditOpen
+} from '../scripts/constants.js';
 
 //Работа с профилем
-const nameSelector = '.profile__user-name'
-const infoSelector = '.profile__description'
-
 const handleProfileFormSubmit = ({ user_name, biography }) =>{
   console.log({ user_name, biography })
   userInfo.setUserInfo({ user_name, biography });
