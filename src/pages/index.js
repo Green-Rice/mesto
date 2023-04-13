@@ -1,10 +1,10 @@
 import "../pages/index.css";
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
-import PopupWithImage from '../scripts/PopupWithImage.js';
-import Section from '../scripts/Section.js';
-import PopupWithForm from '../scripts/PopupWithForm.js';
-import UserInfo from '../scripts/UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo';
 import {
   initialCards,
   formsConfig,
@@ -18,7 +18,7 @@ import {
   buttonOpenAddCardPopup,
   profilePopupContainer,
   popupEditOpen
-} from '../scripts/constants.js';
+} from '../utils/constants.js';
 
 //Работа с профилем
 const handleProfileFormSubmit = ({ user_name, biography }) =>{
@@ -72,16 +72,16 @@ buttonOpenAddCardPopup.addEventListener("click", () => {
   addCardValidation.resetValidation();
 });
 
-//РЕНДЕР КАРТОЧЕК В ДОМ
-const dataSection = {
-  items: initialCards,
-  renderer: createElementCard
-}
+//РЕНДЕР КАРТОЧЕК
+ const rendererCard = new Section({
+    items: initialCards,
+    renderer: (item) => {
+      const cardItem = createElementCard(item);
+      rendererCard.addItem(cardItem);
+    },
+  }, contenerCards);
 
-const initialcardSectionElement = new Section(dataSection, contenerCards)
-initialcardSectionElement.rendererItem();
-
-const rendererCard = new Section({ items: {}, createElementCard }, contenerCards)
+  rendererCard.rendererItem();
 
 // Создание экземпляра класса Card
 function createElementCard(item) {

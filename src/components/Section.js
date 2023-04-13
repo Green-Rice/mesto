@@ -12,7 +12,7 @@ export default class Section {
 
   rendererItem() {
     this._items.forEach((item) => {
-      this._conteiner.append(this._renderer(item));
+      this._renderer(item);
     });
   }
 };
