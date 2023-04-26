@@ -4,7 +4,8 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo';
+import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import {
   initialCards,
   formsConfig,
@@ -17,12 +18,16 @@ import {
   popupContainerCard,
   buttonOpenAddCardPopup,
   profilePopupContainer,
-  popupEditOpen
+  popupEditOpen,
+  popupDeleteCard,
+  popupChangesAvatar,
+  buttonOpenAvatar,
+  buttonOpenConfirm,
+  inputProfileImg
 } from '../utils/constants.js';
 
 //Работа с профилем
-const handleProfileFormSubmit = ({ user_name, biography }) =>{
-  console.log({ user_name, biography })
+const handleProfileFormSubmit = ({ user_name, biography }) => {
   userInfo.setUserInfo({ user_name, biography });
   popupProfileForm.close();
 }
@@ -73,15 +78,15 @@ buttonOpenAddCardPopup.addEventListener("click", () => {
 });
 
 //РЕНДЕР КАРТОЧЕК
- const rendererCard = new Section({
-    items: initialCards,
-    renderer: (item) => {
-      const cardItem = createElementCard(item);
-      rendererCard.addItem(cardItem);
-    },
-  }, contenerCards);
+const rendererCard = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardItem = createElementCard(item);
+    rendererCard.addItem(cardItem);
+  },
+}, contenerCards);
 
-  rendererCard.rendererItem();
+rendererCard.rendererItem();
 
 // Создание экземпляра класса Card
 function createElementCard(item) {
@@ -90,6 +95,26 @@ function createElementCard(item) {
 
   return newCardElement;
 };
+
+// //СОЗДАНИЕ ПОПАПА РЕДАКТИРОВАНИЯ АВАТАРКИ
+const imageProfileAvatar = document.querySelector('.profile__img');
+
+function
+(event) {
+  event.preventDefault();
+
+  imageProfileAvatar.src = inputProfileImg.value
+  popupWithAvatar.close();
+}
+
+const popupWithAvatar = new PopupWithForm(".popup_type_update-avatar", submitChangeAvatar)
+popupWithAvatar.setEventListeners();
+
+buttonOpenAvatar.addEventListener("click", ()=> {
+    console.log('ava')
+    popupWithAvatar.open();
+    // popupWithAvatar.resetValidation();
+})
 
 // ПОДКЛЮЧЕНИЕ ВАЛИДАЦИИ
 const profileValidation = new FormValidator(formsConfig, profilePopupContainer);

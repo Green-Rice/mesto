@@ -15,7 +15,9 @@
 
   <main class="content">
     <section class="profile">
-      <img class="profile__img" src="<%=require('./images/Jac.jpg')%>" alt="Жак-Кусто" />
+      <button type="button" class="button button__avatar-changes">
+        <img class="profile__img" src="<%=require('./images/Jac.jpg')%>" alt="Жак-Кусто" />
+      </button>
 
       <div class="profile__info">
         <div class="profile__wrapper">
@@ -33,9 +35,9 @@
   </main>
 
   <footer class="footer">
-    <p class="footer__copy">&copy; 2023 Mest o Russia</p>
+    <p class="footer__copy">&copy; 2023 Mesto Russia</p>
   </footer>
-//  ПОПАП ПРОФИЛЯ
+  // ПОПАП ПРОФИЛЯ
   <div class="popup popup_type_edit">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
@@ -55,7 +57,7 @@
       </form>
     </div>
   </div>
-  //  ПОПАП ДОБАВЛЕНИЯ КАРТОЧКИ
+  // ПОПАП ДОБАВЛЕНИЯ КАРТОЧКИ
   <div class="popup popup_type_add">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
@@ -80,7 +82,7 @@
       </form>
     </div>
   </div>
-
+  // ПОПАП ОТКРЫТИЯ КАРТОЧКИ
   <div class="popup popup_type_review">
     <div class="popup__view">
       <button type="button" class="popup__close"></button>
@@ -91,13 +93,50 @@
     </div>
   </div>
 
+  // ПОПАП УДАЛЕНИЯ КАРТОЧКИ
+  <div class="popup popup_type_confirm">
+    <div class="popup__content">
+      <button type="button" class="popup__close"></button>
+
+      <form class="popup__form">
+        <h3 class="popup__title popup__title_confirm">Вы уверены?</h3>
+        <button class="popup__submit popup__submit_confirm" type="submit" >Да</button>
+      </form>
+
+    </div>
+  </div>
+
+  // ПОПАП РЕДАКТИРОВАНИЯ АВАТАРА UPDATE AVATAR
+  <div class="popup popup_type_update-avatar">
+    <div class="popup__content">
+      <button type="button" class="popup__close"></button>
+
+      <h3 class="popup__title">Обновить аватар</h3>
+
+      <form name="edit_form" class="popup__form" novalidate>
+
+        <div class="popup__container">
+          <input id="avatar-link" name="link" class="popup__input popup__input_type_link" type="url"
+            placeholder="Ссылка на изображение" required />
+          <span class="popup__input-error link-card-error"></span>
+        </div>
+        <button class="popup__submit" type="submit" disabled>Сохранить</button>
+
+      </form>
+    </div>
+  </div>
+
+  // ТЕМПЛЕЙ ЭЛЕМЕНТ
   <template class="template-element">
     <article class="element">
       <img class="element__img" src="#" alt="картинка" />
       <button type="button" class="element__trash"></button>
       <div class="element__description">
         <h2 class="element__caption"></h2>
-        <button type="button" class="element__like-btn"></button>
+        <div class="element__counter">
+          <button type="button" class="element__like-btn"></button>
+          <div class="element__count">0</div>
+        </div>
       </div>
     </article>
   </template>

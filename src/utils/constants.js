@@ -34,23 +34,32 @@ const formsConfig = {
   errorClass: "popup__input-error_active",
 }
 
-//Берем элемнты из html
-
-const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редактирования
-
+// Popups
 const profilePopupContainer = document.querySelector(".popup_type_edit"); //Попап Редактирования
-
-const buttonOpenAddCardPopup = document.querySelector(".profile__add-button"); //Кнопка добавление карточки
 const popupContainerCard = document.querySelector(".popup_type_add"); //Попап добавление карточки
+const popupSelector = '.popup_type_review'; //  Попап широкоформатной карточки
+const popupChangesAvatar = document.querySelector(".popup_type_update-avatar");//Попап изменения аватарки
+const popupDeleteCard = document.querySelector(".popup_type_confirm");//Попап подверждения удаления карточки
+
+//Popup open button
+const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редакт. проф
+const buttonOpenAddCardPopup = document.querySelector(".profile__add-button"); //Кнопка add card
+const buttonOpenAvatar = document.querySelector(".button__avatar-changes")//Кнопка changes ava
+const buttonOpenConfirm = document.querySelector(".button__avatar-changes")//Кнопка удаления card
 
 // Инпуты попап профиля
 const inputProfileName = document.querySelector('.popup__input_type_name');
 const inputProfileBio = document.querySelector('.popup__input_type_description');
 
-const popupSelector = '.popup_type_review';
+// Инпут аватара
+const inputProfileImg = document.getElementById('avatar-link')
+
+
 const contenerCards = '.elements';
 const nameSelector = '.profile__user-name'
 const infoSelector = '.profile__description'
+
+
 
 export {
   initialCards,
@@ -64,5 +73,10 @@ export {
   popupContainerCard,
   buttonOpenAddCardPopup,
   profilePopupContainer,
-  popupEditOpen
+  popupEditOpen,
+  popupDeleteCard,
+  popupChangesAvatar,
+  buttonOpenAvatar,
+  buttonOpenConfirm,
+  inputProfileImg
 };
