@@ -99,8 +99,7 @@ function createElementCard(item) {
 // //СОЗДАНИЕ ПОПАПА РЕДАКТИРОВАНИЯ АВАТАРКИ
 const imageProfileAvatar = document.querySelector('.profile__img');
 
-function
-(event) {
+function submitChangeAvatar(event) {
   event.preventDefault();
 
   imageProfileAvatar.src = inputProfileImg.value
