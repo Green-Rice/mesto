@@ -99,9 +99,7 @@ function createElementCard(item) {
 // //СОЗДАНИЕ ПОПАПА РЕДАКТИРОВАНИЯ АВАТАРКИ
 const imageProfileAvatar = document.querySelector('.profile__img');
 
-function submitChangeAvatar(event) {
-  event.preventDefault();
-
+function submitChangeAvatar () {
   imageProfileAvatar.src = inputProfileImg.value
   popupWithAvatar.close();
 }
@@ -112,11 +110,13 @@ popupWithAvatar.setEventListeners();
 buttonOpenAvatar.addEventListener("click", ()=> {
     console.log('ava')
     popupWithAvatar.open();
-    // popupWithAvatar.resetValidation();
+    // avatarValidation.resetValidation();
 })
 
 // ПОДКЛЮЧЕНИЕ ВАЛИДАЦИИ
 const profileValidation = new FormValidator(formsConfig, profilePopupContainer);
 const addCardValidation = new FormValidator(formsConfig, popupContainerCard);
+// const avatarValidation = new FormValidator(formsConfig, popupChangesAvatar);
+// avatarValidation.enableValidation();
 profileValidation.enableValidation();
 addCardValidation.enableValidation();
