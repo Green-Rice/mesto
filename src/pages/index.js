@@ -23,12 +23,36 @@ import {
   popupChangesAvatar,
   buttonOpenAvatar,
   buttonOpenConfirm,
-  inputProfileImg
+  inputProfileImg,
+  baseUrl,
+  token
 } from '../utils/constants.js';
+
+//Работа с API
+
+
+const api = new Api(baseUrl, {
+  authorization: token,
+  'Content-Type': 'application/json'
+})
+
+api.getUserInfo()
+.then(res => {
+  // console.log(res)
+  const {name, about, avatar, _id} = res
+  userInfo.setUserInfo({user_name: res.name, biography: res.about, avatar, _id})
+})
+.catch(err => {console.log(err)})
+
 
 //Работа с профилем
 const handleProfileFormSubmit = ({ user_name, biography }) => {
-  userInfo.setUserInfo({ user_name, biography });
+  api.patchUserInfo({ user_name, biography })
+  .then(res=> {
+    userInfo.setUserInfo({user_name: res.name, biography: res.about, avatar: res.avatar, _id: res._id})
+  })
+  .catch(err => {console.log(err)})
+
   popupProfileForm.close();
 }
 
@@ -36,10 +60,12 @@ const handleProfileFormSubmit = ({ user_name, biography }) => {
 const popupProfileForm = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
 popupProfileForm.setEventListeners();
 
+const avatarSelector = '.profile__img'
 //создание экземпляра
 const userInfo = new UserInfo({
   nameSelector,
-  infoSelector
+  infoSelector,
+  avatarSelector
 });
 
 const editButtonClickHandler = () => {
@@ -78,15 +104,23 @@ buttonOpenAddCardPopup.addEventListener("click", () => {
 });
 
 //РЕНДЕР КАРТОЧЕК
+
+api.getStarterCards()
+.then(res=>{
+  console.log(res)
+  rendererCard.rendererItem(res)
+})
+
+
 const rendererCard = new Section({
-  items: initialCards,
+  // items: initialCards,
   renderer: (item) => {
     const cardItem = createElementCard(item);
     rendererCard.addItem(cardItem);
   },
 }, contenerCards);
-
-rendererCard.rendererItem();
+                        //res
+// rendererCard.rendererItem();
 
 // Создание экземпляра класса Card
 function createElementCard(item) {
