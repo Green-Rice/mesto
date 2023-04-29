@@ -43,6 +43,28 @@ export default class Api {
   }
 
 
+  addCardToServer(data) {
+    return fetch(`${this._baseUrl}/cards`,
+    {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+      .then(res => this._checkResponse(res))
+  }
+
+  deleteCard(data){
+    return fetch(`${this._baseUrl}/cards/${data}`,
+      {
+        method: 'DELETE',
+        headers: this._headers
+      })
+      .then(res => this._checkResponse(res))
+  }
+
 
 
 }

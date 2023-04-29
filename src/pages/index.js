@@ -90,8 +90,13 @@ const handlerClickimg = (data) => {
 popupImg.setEventListeners();
 
 //СОЗДАНИЕ ПОПАПА С ДОБАВЛЕНИЕМ КАРТОЧКИ
-function handlerSubmitFormAdd(item) {
-  rendererCard.addItem(createElementCard(item));
+function handlerSubmitFormAdd(data) {
+  api.addCardToServer(data)
+  .then(data => {
+    console.log(data)
+    rendererCard.addItem(createElementCard(data))
+  })
+  .catch(err => {console.log(err)})
   popupAddCards.close();
 }
 
@@ -119,8 +124,6 @@ const rendererCard = new Section({
     rendererCard.addItem(cardItem);
   },
 }, contenerCards);
-                        //res
-// rendererCard.rendererItem();
 
 // Создание экземпляра класса Card
 function createElementCard(item) {
@@ -142,7 +145,6 @@ const popupWithAvatar = new PopupWithForm(".popup_type_update-avatar", submitCha
 popupWithAvatar.setEventListeners();
 
 buttonOpenAvatar.addEventListener("click", ()=> {
-    console.log('ava')
     popupWithAvatar.open();
     // avatarValidation.resetValidation();
 })
