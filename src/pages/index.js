@@ -41,13 +41,16 @@ const api = new Api(baseUrl, {
   'Content-Type': 'application/json'
 })
 
-api.getUserInfo()
-  .then(res => {
-    // console.log(res)
-    const { name, about, avatar, _id } = res
-    userInfo.setUserInfo({ user_name: res.name, biography: res.about, avatar, _id })
-  })
-  .catch(err => { console.log(err) })
+Promise.all([
+  api.getUserInfo(),
+  api.getStarterCards()
+])
+.then(([res, data]) => {
+  const { name, about, avatar, _id } = res
+  userInfo.setUserInfo({ user_name: res.name, biography: res.about, avatar, _id })
+  rendererCard.rendererItem(data.reverse())
+})
+.catch(err => { console.log(err) })
 
 // Работа с лайками
 
@@ -70,17 +73,20 @@ const deleteLikes = (data) => {
 
 //Работа с профилем
 const handleProfileFormSubmit = ({ user_name, biography }) => {
+  popupProfileForm.renameButton('Сохранение...')
   api.patchUserInfo({ user_name, biography })
     .then(res => {
       userInfo.setUserInfo({ user_name: res.name, biography: res.about, avatar: res.avatar, _id: res._id })
+      popupProfileForm.close();
     })
     .catch(err => { console.log(err) })
-
-  popupProfileForm.close();
+    .finally(()=> {
+      popupProfileForm.renameButton('Сохранить')
+    })
 }
 
 //СОЗДАНИЯ ПОПАПА С ПРОФИЛЕМ
-const popupProfileForm = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit, 'Сохранить');
+const popupProfileForm = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
 popupProfileForm.setEventListeners();
 
 
@@ -114,15 +120,19 @@ popupImg.setEventListeners();
 
 //СОЗДАНИЕ ПОПАПА С ДОБАВЛЕНИЕМ КАРТОЧКИ
 function handlerSubmitFormAdd(data) {
+  popupAddCards.renameButton('Сохранение...')
   api.addCardToServer(data)
     .then(data => {
       rendererCard.addItem(createElementCard(data))
+      popupAddCards.close();
     })
     .catch(err => { console.log(err) })
-  popupAddCards.close();
+    .finally(()=> {
+      popupAddCards.renameButton('Создать')
+    })
 }
 
-const popupAddCards = new PopupWithForm('.popup_type_add', handlerSubmitFormAdd, 'Создать')
+const popupAddCards = new PopupWithForm('.popup_type_add', handlerSubmitFormAdd)
 popupAddCards.setEventListeners();
 
 buttonOpenAddCardPopup.addEventListener("click", () => {
@@ -131,12 +141,6 @@ buttonOpenAddCardPopup.addEventListener("click", () => {
 });
 
 //РЕНДЕР КАРТОЧЕК
-
-api.getStarterCards()
-  .then(res => {
-    rendererCard.rendererItem(res.reverse())
-  })
-
 
 const rendererCard = new Section({
   renderer: (item) => {
@@ -165,32 +169,31 @@ function handlerDeleteSubmit(data) {
   api.deleteCard(data._data)
     .then(() => {
       data.removeCard();
-    }
-    )
-    .catch(err => { console.log(err) })
-    .finally(() => {
       deletePopup.close()
     })
-
+    .catch(err => { console.log(err) })
 }
 
 const deletePopup = new DeletePopup(".popup_type_confirm", handlerDeleteSubmit)
+deletePopup.setEventListeners();
 
 function handlerOpenDeletePopup(data) {
-  deletePopup.open();
-  deletePopup.setEventListeners(data)
+  deletePopup.open(data);
 }
 
 // СОЗДАНИЕ ПОПАПА РЕДАКТИРОВАНИЯ АВАТАРКИ
 
 function submitChangeAvatar(data) {
+  popupWithAvatar.renameButton('Сохранение...')
   api.patchAvaratImage(data)
   .then(res => {
     userInfo.setUserInfo({ user_name: res.name, biography: res.about, avatar: res.avatar, _id: res._id })
+    popupWithAvatar.close();
   })
   .catch(err => { console.log(err) })
-
-  popupWithAvatar.close();
+  .finally(()=> {
+    popupWithAvatar.renameButton('Сохранить')
+  })
 }
 
 const popupWithAvatar = new PopupWithForm(".popup_type_update-avatar", submitChangeAvatar, 'Сохранить')
@@ -200,5 +203,3 @@ buttonOpenAvatar.addEventListener("click", () => {
   popupWithAvatar.open();
   avatarValidation.resetValidation();
 })
-
-

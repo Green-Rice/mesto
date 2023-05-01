@@ -18,6 +18,7 @@ export default class Card {
     this._deleteLikes = deleteLikes;
   }
 
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)

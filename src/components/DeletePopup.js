@@ -7,10 +7,12 @@ export default class DeletePopup extends Popup {
     this._form = this._popup.querySelector('.popup__form');
   }
 
-
-
-  setEventListeners = (data) => {
+  open(data){
     this._data = data
+    super.open()
+  }
+
+  setEventListeners = () => {
     this._form.addEventListener('submit', this._submitDelete)
     super.setEventListeners()
   }
