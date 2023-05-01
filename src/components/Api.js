@@ -57,7 +57,7 @@ export default class Api {
   }
 
   deleteCard(data){
-    return fetch(`${this._baseUrl}/cards/${data}`,
+    return fetch(`${this._baseUrl}/cards/${data._id}`,
       {
         method: 'DELETE',
         headers: this._headers
@@ -65,7 +65,35 @@ export default class Api {
       .then(res => this._checkResponse(res))
   }
 
+  setLikes(data) {
+    return fetch(`${this._baseUrl}/cards/${data._id}/likes`,
+    {
+      method: 'PUT',
+      headers: this._headers,
+    })
+      .then(res => this._checkResponse(res))
+  }
 
+  deleteLikes(data) {
+    return fetch(`${this._baseUrl}/cards/${data._id}/likes`,
+    {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(res => this._checkResponse(res))
+  }
+
+  patchAvaratImage(data) {
+    return fetch(`${this._baseUrl}/users/me/avatar`,
+      {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({
+          avatar: data.link
+        })
+      })
+      .then(res => this._checkResponse(res))
+  }
 
 }
 
