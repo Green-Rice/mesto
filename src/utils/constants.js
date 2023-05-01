@@ -19,7 +19,7 @@ const popupChangesAvatar = document.querySelector(".popup_type_update-avatar");/
 //Popup open button
 const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редакт. проф
 const buttonOpenAddCardPopup = document.querySelector(".profile__add-button"); //Кнопка add card
-const buttonOpenAvatar = document.querySelector(".button__avatar-changes")//Кнопка changes ava
+const buttonOpenAvatar = document.querySelector(".profile__avatar-changes")//Кнопка changes ava
 
 // Инпуты попап профиля
 const inputProfileName = document.querySelector('.popup__input_type_name');
